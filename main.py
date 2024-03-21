@@ -32,23 +32,27 @@ def getDimensions():
     columns = int(input("Enter the number of columns: "))
     return rows, columns
 
-def getMatrix(rows, columns):
+def getMatrix(dimensions):
     """
     Creates a matrix with numbers provided by the user.
 
     Parameters:
-    rows (int): Dimensions of the rows of the matrix.
-    columns (int): Dimensions of the columns of the matrix.
+    dimensions (tuple): A tuple containing the dimensions of the matrix.
 
     Returns:
     Matrix (list): Matrix
     """
+    rows, columns = dimensions
     matrix = []
     for i in range(rows):
-        matrix.append([])
-        for j in range(columns):
-            matrix[i].append(int(input("Enter a number: ")))
+        row = list(map(int, input("Enter the numbers for row {} separated by space: ".format(i+1)).split()))
+        if len(row) != columns:
+            print("You must enter exactly {} numbers.".format(columns))
+            return
+        matrix.append(row)
     return matrix
+
+print(getMatrix(getDimensions()))
 
 def validateMatrices(mat1, mat2, operation):
     """
