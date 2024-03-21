@@ -33,4 +33,13 @@ def matrixMultiplication(matrix1, matrix2):
 
     result = []
     result = np.dot(matrix1, matrix2)
-    return result.tolist()
+    return result # can also use tolist() to convert to a list if needed
+
+def scalarMultiplication(matrix, scalar):
+    '''4.4.6 Multiplies a matrix by a scalar'''
+    result = []
+    for i in range(len(matrix)):
+        result.append([])
+        for j in range(len(matrix[0])):
+            result[i].append(matrix[i][j] * scalar)
+    return result
