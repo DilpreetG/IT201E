@@ -4,6 +4,7 @@ import numpy as np
 
 def matrixAddition(matrix1, matrix2):
     '''4.4.3 Adds two matrices together'''
+    matrix1, matrix2 = np.array(matrix1), np.array(matrix2)
     if matrix1.shape != matrix2.shape:
         raise ValueError("Matrices must be the same size to add them together")
 
@@ -16,8 +17,9 @@ def matrixAddition(matrix1, matrix2):
 
 def matrixSubtraction(matrix1, matrix2):
     '''4.4.4 Subtracts two matrices'''
+    matrix1, matrix2 = np.array(matrix1), np.array(matrix2)
     if matrix1.shape != matrix2.shape:
-        raise ValueError("Matrices must be the same size to add them together")
+        raise ValueError("Matrices must be the same size to subtract them together")
 
     result = []
     for i in range(len(matrix1)):

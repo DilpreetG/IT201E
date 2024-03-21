@@ -9,7 +9,6 @@ def presentMatrixOptions():
     Returns:
     selection (int): User's selected choice for the mode of operation for the matrix.
     """
-    # 4.4.1 Menu Creation
     print("1. Add matrices")
     print("2. Subtract matrices")
     print("3. Multiply matrices")
@@ -51,8 +50,6 @@ def getMatrix(dimensions):
             return
         matrix.append(row)
     return matrix
-
-print(getMatrix(getDimensions()))
 
 def validateMatrices(mat1, mat2, operation):
     """
