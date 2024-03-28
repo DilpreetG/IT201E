@@ -1,3 +1,4 @@
+
 import numpy as np
 
 '''Michael Jolley and Dilpreet Gill - Lab 03 - 4.4.3 4.4.4 4.4.5 and 4.4.6 - Math Functions'''
@@ -6,7 +7,7 @@ def matrixAddition(matrix1, matrix2):
     '''4.4.3 Adds two matrices together'''
     matrix1, matrix2 = np.array(matrix1), np.array(matrix2)
     if matrix1.shape != matrix2.shape:
-        raise ValueError("Matrices must be the same size to add them together")
+        return("Matrices must be the same size to add them together")
 
     result = []
     for i in range(len(matrix1)):
@@ -19,7 +20,7 @@ def matrixSubtraction(matrix1, matrix2):
     '''4.4.4 Subtracts two matrices'''
     matrix1, matrix2 = np.array(matrix1), np.array(matrix2)
     if matrix1.shape != matrix2.shape:
-        raise ValueError("Matrices must be the same size to subtract them together")
+        return("Matrices must be the same size to subtract them together")
 
     result = []
     for i in range(len(matrix1)):
@@ -31,7 +32,7 @@ def matrixSubtraction(matrix1, matrix2):
 def matrixMultiplication(matrix1, matrix2):
     '''4.4.5 Multiplies two matrices together'''
     if len(matrix1[0]) != len(matrix2):
-        raise ValueError("The number of columns in the first matrix must match the number of rows in the second matrix")
+        return("The number of columns in the first matrix must match the number of rows in the second matrix")
 
     result = []
     result = np.dot(matrix1, matrix2)
