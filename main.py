@@ -55,12 +55,20 @@ def getMatrix(dimensions):
     rows, columns = dimensions
     matrix = []
     for i in range(rows):
-        row = list(map(int, input("Enter the numbers for row {} separated by space: ".format(i+1)).split()))
-        if len(row) != columns:
-            print("You must enter exactly {} numbers.".format(columns))
-            return
-        matrix.append(row)
+        while True:  # Loop until valid input is provided
+            try:
+                row_input = input("Enter the numbers for row {} separated by space: ".format(i+1))
+                row = list(map(int, row_input.split()))
+
+                if len(row) != columns:
+                    print("You must enter exactly {} numbers. You entered {}.".format(columns, len(row)))
+                else:
+                    matrix.append(row)
+                    break  # Exit loop if the input is valid
+            except ValueError:
+                print("Please enter only integer numbers.")
     return matrix
+
 
 def validateMatrices(mat1, mat2, operation):
     """
