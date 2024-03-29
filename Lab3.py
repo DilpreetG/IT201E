@@ -123,12 +123,13 @@ while True:
         print("Enter the values of the matrix\n")
         # Get the first matrix
         matrix1 = getMatrix((rows, columns))
-
         print()
-
-        # Get the scalar
-        scalar = int(input("Enter the scalar: "))
-
-        # Multiply the matrix by the scalar
-        result = scalarMultiplication(matrix1, scalar)
-        print(result)
+        while True:
+            try:
+                # Get the scalar
+                scalar = int(input("Enter the scalar: "))
+                # Multiply the matrix by the scalar
+                result = scalarMultiplication(matrix1, scalar)
+                print(result)
+            except ValueError:
+                print("Invalid scaler value. Try again.")
