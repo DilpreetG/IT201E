@@ -14,8 +14,15 @@ def presentMatrixOptions():
     print("3. Multiply matrices")
     print("4. Multiply matrices by a scalar")
 
-    selection = int(input("Enter your selection: "))
-    return selection
+    while True:  # Keeps asking until a valid input is provided
+        try:
+            selection = int(input("Enter your selection: "))
+            if 1 <= selection <= 4:  # Check if the selection is one of the valid options
+                return selection
+            else:
+                print("Please enter a number between 1 and 4.")
+        except ValueError:
+            print("That's not a valid input. Please enter a number between 1 and 4.")
 
 def getDimensions():
     """
@@ -27,9 +34,13 @@ def getDimensions():
     rows (int): Dimensions of the rows of the matrix.
     columns (int): Dimensions of the columns of the matrix.
     """
-    rows = int(input("Enter the number of rows: "))
-    columns = int(input("Enter the number of columns: "))
-    return rows, columns
+    while True:  # Keeps asking until a valid input is provided
+        try:
+            rows = int(input("Enter the number of rows: "))
+            columns = int(input("Enter the number of columns: "))
+            return rows, columns
+        except ValueError:
+            print("That's not a valid input. Please try again.")
 
 def getMatrix(dimensions):
     """
