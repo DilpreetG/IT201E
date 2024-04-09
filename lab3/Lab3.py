@@ -1,8 +1,8 @@
 '''Michael Jolley and Dilpreet Gill - Lab 03 - Main Program'''
 
 import numpy as np
-from matrixMathFunction import matrixAddition, matrixSubtraction, matrixMultiplication, scalarMultiplication
-from main import presentMatrixOptions, getDimensions, getMatrix, validateMatrices
+from lab3.matrixMathFunction import matrixAddition, matrixSubtraction, matrixMultiplication, scalarMultiplication
+from lab3.main import presentMatrixOptions, getDimensions, getMatrix, validateMatrices
 
 # Present the user with the menu of options
 while True:
