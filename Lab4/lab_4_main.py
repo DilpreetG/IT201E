@@ -19,6 +19,15 @@ def display_menu():
     print("5. Exit")
 
 def construct_set_zm():
+    """
+    Constructs the set Zm, where m is a user-provided modulus, and calculates the additive and multiplicative inverses for each element in Zm.
+
+    Parameters:
+    None, but prompts user to input an integer for the modulus.
+
+    Returns:
+    str: A string representation of the set Zm, along with the additive and multiplicative inverses for each element in Zm. If the input is not a positive integer, returns an error message.
+    """
     m = int(input("Enter an integer for modulus: "))
     if m < 0:
         return "Input must be positive."
@@ -45,6 +54,15 @@ def construct_set_zm():
     return f"Z{m} = {set_zm} \n Additive inverses: {additive_inverses} \n Multiplicative Inverses: {multiplicative_inverses}"
 
 def compute_gcd():
+    """
+    Computes the greatest common divisor (GCD) of two user-provided integers using the math.gcd function.
+
+    Parameters:
+    None, but prompts user to input two integers.
+
+    Returns:
+    str: A string representation of the GCD of the two input integers. If the inputs are not integers, returns an error message. If both inputs are zero, returns a message stating that the GCD of zeros is undefined.
+    """
     try:
         a = int(input("Enter first number: "))
         b = int(input("Enter second number: "))
@@ -57,6 +75,15 @@ def compute_gcd():
     return f"GCD = {gcdResult}"
 
 def test_primality():
+    """
+    Tests the primality of a user-provided integer using trial division.
+
+    Parameters:
+    None, but prompts user to input an integer.
+
+    Returns:
+    str: A string representation of the result of the primality test. If the input is not an integer, returns an error message. If the input is 1 or 2, returns a message stating that 1 is composite and 2 is the only even prime number, respectively. If the input is less than 0, returns a message stating that the input must be a positive integer.
+    """
     n = int(input("Enter a number for primality test: "))
     if n == 2:
         return "2 is the only even prime number, no test needed."
@@ -141,9 +168,23 @@ def test_primality():
     message3 = (f"Test primality by Miller-Rabin Test: Primality = {result} and time = {time_total_3}")
     return message1, message2, message3
 
-def euclidean_algorithm(a, b):
-    if isinstance(a, int) == False or isinstance(b, int) == False:
+def euclidean_algorithm():
+    """
+    Computes the greatest common divisor (GCD) of two user-provided integers using the Euclidean algorithm.
+
+    Parameters:
+    None, but prompts user to input two integers.
+
+    Returns:
+    str: A string representation of the GCD of the two input integers. If the inputs are not integers, returns an error message. If both inputs are even, returns a message stating that the inputs are not coprime.
+    """
+    try:
+        a = int(input("Enter first number: "))
+        b = int(input("Enter second number: "))
+    except:
         return "Inputs must be integers."
+    if a % 2 == 0 and b % 2 == 0:
+        return "Error: a and b are not coprime"
     while b != 0:
         a, b = b, a % b
     return_statement = "GCD is: "
