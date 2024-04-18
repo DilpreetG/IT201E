@@ -4,8 +4,8 @@ https://github.com/shmilylty/miller-rabin-primality-test/blob/master/miller_rabi
 OpenAI. (2022). Assistance with Miller-Rabin Primality Test Implementation. GitHub Copilot. https://copilot.github.com
 '''
 
-import numpy
-import sympy
+# import numPy
+# import sympy
 import math
 import random
 import time
@@ -18,18 +18,21 @@ def display_menu():
     print("4. Euclidean algorithm")
     print("5. Exit")
 
-def construct_set_zm(m):
+def construct_set_zm():
+    m = int(input("Enter an integer for modulus: "))
+    if m < 0:
+        return "Input must be positive."
     set_zm = []
+    additive_inverses = []
+    multiplicative_inverses = []
     for i in range(m):
         set_zm.append(i)
 
-    print(f"Set Zm: {set_zm}")
-
-    # Calculate and display the additive and multiplicative inverses for each element in Zm
+    # Calculate the additive and multiplicative inverses for each element in Zm
     for a in set_zm:
         # Additive inverse
         additive_inverse = (-a) % m
-        print(f"Additive inverse of {a} in Zm: {additive_inverse}")
+        additive_inverses.append(additive_inverse)
 
         # Multiplicative inverse
         multiplicative_inverse = None
@@ -37,21 +40,24 @@ def construct_set_zm(m):
             if (a * b) % m == 1:
                 multiplicative_inverse = b
                 break
-        if multiplicative_inverse is not None:
-            print(f"Multiplicative inverse of {a} in Zm: {multiplicative_inverse}")
-        else:
-            print(f"{a} has no multiplicative inverse in Zm")
+        multiplicative_inverses.append(multiplicative_inverse)
 
-def compute_gcd(a, b):
+    return f"Z{m} = {set_zm} \n Additive inverses: {additive_inverses} \n Multiplicative Inverses: {multiplicative_inverses}"
+
+def compute_gcd():
+    try:
+        a = int(input("Enter first number: "))
+        b = int(input("Enter second number: "))
+    except:
+        return "Inputs must be integers"
     #
-    if a.type() == str or b.type() == str:
-        return "Inputs must be integers."
-    elif a == 0 or b == 0:
+    if a == 0 and b == 0:
         return "GCD of zeros is undefined"
-    gcd = gcd(a, b)
-    return gcd
+    gcdResult = math.gcd(a, b)
+    return f"GCD = {gcdResult}"
 
-def test_primality(n):
+def test_primality():
+    n = int(input("Enter a number for primality test: "))
     if n == 2:
         return "2 is the only even prime number, no test needed."
     elif n == 1:
@@ -59,25 +65,27 @@ def test_primality(n):
     elif n < 0:
         return "Input must be a positive integer"
     # Trial division
-    time1 = time.clock()
+    time1 = time.perf_counter_ns()
     if n <= 1:
         result = False
     elif n <= 3:
         result = True
     elif n % 2 == 0 or n % 3 == 0:
         result = False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            result = False
-        i += 6
-    result = True
-    time2 = time.clock
+    else:
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
+                result = False
+                break
+            i += 6
+        else:
+            result = True
+    time2 = time.perf_counter_ns()
     time_total_1 = time2 - time1
-    message1 = (f"Test primality by Trial Division. Primality = {result} and time = {time_total_1}\n")
-
+    message1 = (f"Test primality by Trial Division: Primality = {result} and time = {time_total_1}")
     # Fermat's test
-    time1 = time.clock()
+    time1 = time.perf_counter_ns()
     k = 5  # number of testing rounds
     if n <= 1 or n == 4:
         result = False
@@ -96,12 +104,12 @@ def test_primality(n):
             k -= 1
         else:
             result = True
-    time2 = time.clock()
+    time2 = time.perf_counter_ns()
     time_total_2 = time2 - time1
-    message2 = (f"Test primality by Fermat's Test. Primality = {result} and time = {time_total_2}\n")
+    message2 = (f"Test primality by Fermat's Test: Primality = {result} and time = {time_total_2}")
 
     # Miller-Rabin Test
-    time1 = time.clock()
+    time1 = time.perf_counter_ns()
     k = 5  # number of testing rounds
     if n <= 1:
         result = False
@@ -128,13 +136,13 @@ def test_primality(n):
         else:
             result = True
 
-    time2 = time.clock()
+    time2 = time.perf_counter_ns()
     time_total_3 = time2 - time1
-    message3 = (f"Test primality by Miller-Rabin Test. Primality = {result} and time = {time_total_3}\n")
+    message3 = (f"Test primality by Miller-Rabin Test: Primality = {result} and time = {time_total_3}")
     return message1, message2, message3
 
 def euclidean_algorithm(a, b):
-    if a != int or b != int:
+    if isinstance(a, int) == False or isinstance(b, int) == False:
         return "Inputs must be integers."
     while b != 0:
         a, b = b, a % b
@@ -147,13 +155,13 @@ while True:
     choice = input("Enter your choice (1-5): ")
 
     if choice == "1":
-        construct_set_zm()
+        print(construct_set_zm())
     elif choice == "2":
-        compute_gcd()
+        print(compute_gcd())
     elif choice == "3":
-        test_primality()
+        print(test_primality())
     elif choice == "4":
-        euclidean_algorithm()
+        print(euclidean_algorithm())
     elif choice == "5":
         print("Exiting...")
         break
