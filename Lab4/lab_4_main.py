@@ -61,7 +61,8 @@ def compute_gcd():
     None, but prompts user to input two integers.
 
     Returns:
-    str: A string representation of the GCD of the two input integers. If the inputs are not integers, returns an error message. If both inputs are zero, returns a message stating that the GCD of zeros is undefined.
+    str: A string representation of the GCD of the two input integers. If the inputs are not integers, returns an error message.
+    If both inputs are zero, returns a message stating that the GCD of zeros is undefined.
     """
     try:
         a = int(input("Enter first number: "))
@@ -76,13 +77,16 @@ def compute_gcd():
 
 def test_primality():
     """
-    Tests the primality of a user-provided integer using trial division.
+    Tests the primality of a user-provided integer using trial division, Fermat's Test, and Miller-Rabin Test.
 
     Parameters:
     None, but prompts user to input an integer.
 
     Returns:
-    str: A string representation of the result of the primality test. If the input is not an integer, returns an error message. If the input is 1 or 2, returns a message stating that 1 is composite and 2 is the only even prime number, respectively. If the input is less than 0, returns a message stating that the input must be a positive integer.
+    str: A string representation of the result of the primality test. If the input is not an integer, returns an error message.
+    If the input is 1 or 2, returns a message stating that 1 is composite and 2 is the only even prime number, respectively.
+    If the input is less than 0, returns a message stating that the input must be a positive integer.
+    Also returns the time each test takes to determine primality.
     """
     n = int(input("Enter a number for primality test: "))
     if n == 2:
