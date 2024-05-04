@@ -1,8 +1,9 @@
 '''Lab 5 - IT201E - Michael Jolley and Dilpreet Gill - 4/30/2024'''
 
 import heapq
-import networkx as nx
-import matplotlib as plt
+import networkx
+import matplotlib
+
 
 def dijkstra(graph, start_vertex):
     distances = {vertex: float('infinity') for vertex in graph}
@@ -26,21 +27,21 @@ def dijkstra(graph, start_vertex):
     return distances
 
 def visualize_graph(graph, shortest_paths, start_vertex):
-    G = nx.DiGraph()
+    G = networkx.DiGraph()
 
     for node, edges in graph.items():
         for edge in edges:
             G.add_edge(node, edge[0], weight=edge[1])
 
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos, with_labels=True)
-    labels = nx.get_edge_attributes(G, 'weight')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+    pos = networkx.spring_layout(G)
+    networkx.draw(G, pos, with_labels=True)
+    labels = networkx.get_edge_attributes(G, 'weight')
+    networkx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 
     shortest_path_edges = [(start_vertex, node) for node in shortest_paths.keys()]
-    nx.draw_networkx_edges(G, pos, edgelist=shortest_path_edges, edge_color='r', width=2)
+    networkx.draw_networkx_edges(G, pos, edgelist=shortest_path_edges, edge_color='r', width=2)
 
-    plt.show()
+    matplotlib.show()
 
 # Test cases
 test_cases = {
